@@ -1,0 +1,268 @@
+@font-face {
+	font-family: 'socicon';
+	src: url('font/socicon-webfont.eot');
+	src: url('font/socicon-webfont.eot?#iefix') format('embedded-opentype'),
+	url('font/socicon-webfont.woff') format('woff'),
+	url('font/socicon-webfont.ttf') format('truetype'),
+	url('font/socicon-webfont.svg#sociconregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+.socicon,.socicon:hover {
+	color:	#ffffff;
+}
+.socicon > span.icon {
+	font-family: 'socicon' !important;
+}
+.socicon.easid > span.icon:before { content: "5"; }
+.socicon.twitter > span.icon:before { content: "a"; }
+.socicon.facebook > span.icon:before { content: "b"; }
+.socicon.google > span.icon:before { content: "c"; }
+.socicon.pinterest > span.icon:before { content: "d"; }
+.socicon.foursquare > span.icon:before { content: "e"; }
+.socicon.yahoo > span.icon:before { content: "f"; }
+.socicon.skype > span.icon:before { content: "g"; }
+.socicon.yelp > span.icon:before { content: "h"; }
+.socicon.feedburner > span.icon:before { content: "i"; }
+.socicon.linkedin > span.icon:before { content: "j"; }
+.socicon.viadeo > span.icon:before { content: "k"; }
+.socicon.xing > span.icon:before { content: "l"; }
+.socicon.myspace > span.icon:before { content: "m"; }
+.socicon.soundcloud > span.icon:before { content: "n"; }
+.socicon.spotify > span.icon:before { content: "o"; }
+.socicon.grooveshark > span.icon:before { content: "p"; }
+.socicon.lastfm > span.icon:before { content: "q"; }
+.socicon.youtube > span.icon:before { content: "r"; }
+.socicon.vimeo > span.icon:before { content: "s"; }
+.socicon.dailymotion > span.icon:before { content: "t"; }
+.socicon.vine > span.icon:before { content: "u"; }
+.socicon.flickr > span.icon:before { content: "v"; }
+.socicon.500px > span.icon:before { content: "w"; }
+.socicon.instagram > span.icon:before { content: "x"; }
+.socicon.wordpress > span.icon:before { content: "y"; }
+.socicon.tumblr > span.icon:before { content: "z"; }
+.socicon.blogger > span.icon:before { content: "A"; }
+.socicon.technorati > span.icon:before { content: "B"; }
+.socicon.reddit > span.icon:before { content: "C"; }
+.socicon.dribbble > span.icon:before { content: "D"; }
+.socicon.stumbleupon > span.icon:before { content: "E"; }
+.socicon.digg > span.icon:before { content: "F"; }
+.socicon.envato > span.icon:before { content: "G"; }
+.socicon.behance > span.icon:before { content: "H"; }
+.socicon.delicious > span.icon:before { content: "I"; }
+.socicon.deviantart > span.icon:before { content: "J"; }
+.socicon.forrst > span.icon:before { content: "K"; }
+.socicon.play > span.icon:before { content: "L"; }
+.socicon.zerply > span.icon:before { content: "M"; }
+.socicon.wikipedia > span.icon:before { content: "N"; }
+.socicon.apple > span.icon:before { content: "O"; }
+.socicon.flattr > span.icon:before { content: "P"; }
+.socicon.github > span.icon:before { content: "Q"; }
+.socicon.chimein > span.icon:before { content: "R"; }
+.socicon.friendfeed > span.icon:before { content: "S"; }
+.socicon.newsvine > span.icon:before { content: "T"; }
+.socicon.identica > span.icon:before { content: "U"; }
+.socicon.bebo > span.icon:before { content: "V"; }
+.socicon.zynga > span.icon:before { content: "W"; }
+.socicon.steam > span.icon:before { content: "X"; }
+.socicon.xbox > span.icon:before { content: "Y"; }
+.socicon.windows > span.icon:before { content: "Z"; }
+.socicon.outlook > span.icon:before { content: "1"; }
+.socicon.coderwall > span.icon:before { content: "2"; }
+.socicon.tripadvisor > span.icon:before { content: "3"; }
+.socicon.netcodes > span.icon:before { content: "4"; }
+.socicon.lanyrd > span.icon:before { content: "7"; }
+.socicon.slideshare > span.icon:before { content: "8"; }
+.socicon.buffer > span.icon:before { content: "9"; }
+.socicon.rss > span.icon:before { content: ","; }
+.socicon.vkontakte > span.icon:before { content: ";"; }
+.socicon.disqus > span.icon:before { content: ":"; }
+.socicon.twitter {
+        background-color: #4da7de;
+}
+.socicon.facebook {
+        background-color: #3e5b98;
+}
+.socicon.google {
+        background-color: #d93e2d;
+}
+.socicon.pinterest {
+        background-color: #c92619;
+}
+.socicon.foursquare {
+        background-color: #23b7e0;
+}
+.socicon.yahoo {
+        background-color: #6E2A85;
+}
+.socicon.skype {
+        background-color: #28abe3;
+}
+.socicon.yelp {
+        background-color: #c83218;
+}
+.socicon.feedburner {
+        background-color: #FFCC00;
+}
+.socicon.linkedin {
+        background-color: #3371b7;
+}
+.socicon.viadeo {
+        background-color: #e4a000;
+}
+.socicon.xing {
+        background-color: #005a60;
+}
+.socicon.myspace {
+        background-color: #323232;
+}
+.socicon.soundcloud {
+        background-color: #fe3801;
+}
+.socicon.spotify {
+        background-color: #7bb342;
+}
+.socicon.grooveshark {
+        background-color: #000000;
+}
+.socicon.lastfm {
+        background-color: #d41316;
+}
+.socicon.youtube {
+        background-color: #e02a20;
+}
+.socicon.vimeo {
+        background-color: #51b5e7;
+}
+.socicon.dailymotion {
+        background-color: #004e72;
+}
+.socicon.vine {
+        background-color: #00b389;
+}
+.socicon.flickr {
+        background-color: #1e1e1b;
+}
+.socicon.500px {
+        background-color: #58a9de;
+}
+.socicon.instagram {
+        background-color: #9c7c6e;
+}
+.socicon.wordpress {
+        background-color: #464646;
+}
+.socicon.tumblr {
+        background-color: #45556c;
+}
+.socicon.blogger {
+        background-color: #ec661c;
+}
+.socicon.technorati {
+        background-color: #5cb030;
+}
+.socicon.reddit {
+        background-color: #e74a1e;
+}
+.socicon.dribbble {
+        background-color: #e84d88;
+}
+.socicon.stumbleupon {
+        background-color: #e64011;
+}
+.socicon.digg {
+        background-color: #1d1d1b;
+}
+.socicon.envato {
+        background-color: #597c3a;
+}
+.socicon.behance {
+        background-color: #000000;
+}
+.socicon.delicious {
+        background-color: #020202;
+}
+.socicon.deviantart {
+        background-color: #c5d200;
+}
+.socicon.forrst {
+        background-color: #5B9A68;
+}
+.socicon.play {
+        background-color: #000000;
+}
+.socicon.zerply {
+        background-color: #9DBC7A;
+}
+.socicon.wikipedia {
+        background-color: #000000;
+}
+.socicon.apple {
+        background-color: #B9BFC1;
+}
+.socicon.flattr {
+        background-color: #F67C1A;
+}
+.socicon.github {
+        background-color: #5380c0;
+}
+.socicon.chimein {
+        background-color: #888688;
+}
+.socicon.friendfeed {
+        background-color: #2F72C4;
+}
+.socicon.newsvine {
+        background-color: #075B2F;
+}
+.socicon.identica {
+        background-color: #000000;
+}
+.socicon.bebo {
+        background-color: #EF1011;
+}
+.socicon.zynga {
+        background-color: #DC0606;
+}
+.socicon.steam {
+        background-color: #8F8D8A;
+}
+.socicon.xbox {
+        background-color: #92C83E;
+}
+.socicon.windows {
+        background-color: #00BDF6;
+}
+.socicon.outlook {
+        background-color: #0072C6;
+}
+.socicon.coderwall {
+        background-color: #3E8DCC;
+}
+.socicon.tripadvisor {
+        background-color: #000000;
+}
+.socicon.netcodes {
+        background-color: #2E3436;
+}
+.socicon.easid {
+        background-color: #1ABC9C;
+}
+.socicon.lanyrd {
+        background-color: #3c80c9;
+}
+.socicon.slideshare {
+        background-color: #4ba3a6;
+}
+.socicon.buffer {
+        background-color: #000000;
+}
+.socicon.rss {
+        background-color: #f26109;
+}
+.socicon.vkontakte {
+        background-color: #5a7fa6;
+}
+.socicon.disqus {
+        background-color: #2e9fff;
+}

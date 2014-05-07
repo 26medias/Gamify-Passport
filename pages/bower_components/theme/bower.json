@@ -1,0 +1,11 @@
+{
+	"name": "theme",
+	"version": "1.0.0",
+	"dependencies":	{
+		"underscore":	 "latest"
+	},
+	"main": [
+		"theme.less",
+		"sidebar.js"
+	]
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{text:title}</title>
+		<meta charset="utf-8">
+		<base href="/">
+		
+		<script type="text/javascript">
+			var userData = {json:user};
+			window.userData = userData;
+		</script>
+		
+		{dependency:dependencies}
+		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js"></script>
+		
+		<!-- Project file -->
+		<script type="text/javascript" src="static/engine/project.js"></script>
+		<script type="text/javascript" src="static/engine/drag.js"></script>
+		<link rel="stylesheet" href="static/engine/theme.css">
+	</head>
+	<body ng-app="main">
+		<div id="wrap">
+			
+			<!-- Fixed navbar -->
+			<div class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="headerCtrl">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">{{header.title}}</a>
+					</div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav">
+							<li ng-repeat="item in header.menu" ng-class="{active:item.active}"><a href="{{item.url}}">{{item.label}}</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li ng-repeat="item in header.menuRight" ng-class="{active:item.active, dropdown:item.items}">
+								<a ng-if="item.items" data-toggle="dropdown"  href="{{item.url?item.url:'#'}}">{{item.label}} <b class="caret"></b></a>
+								<a ng-if="!item.items" href="{{item.url?item.url:'#'}}">{{item.label}}</a>
+								<ul ng-if="item.items" class="dropdown-menu" role="menu">
+									<li ng-repeat="subitem in item.items" ng-class="{active:subitem.active}"><a href="{{subitem.url}}">{{subitem.label}}</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div><!--/.nav-collapse -->
+				</div>
+			</div>
+			
+			<!-- Begin page content -->
+			<div class="container" style="padding-top: 80px;">
+				

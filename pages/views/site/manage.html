@@ -1,0 +1,268 @@
+{include:sidebar/header.html}
+<div class="full-page" ng-controller="mainCtrl">
+	<div class="sidebar-container" ng-class="{open1:sidebar.open==1,open2:sidebar.open==2}">
+		
+		<div class="content">
+			<div class="preview-container">
+				<div class="widget-preview" ng-repeat="widget in pages.selectedObject.widgets">
+					<div class="widget-overlay"></div>
+					<div class="widget-content" widget-preview="widget"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="sidebar">
+			<div ng-if="sidebar.loading" style="text-align: center;">
+				Loading...<br />
+				<img src="/static/images/loading.gif" alt="" />
+			</div>
+			<div ng-if="!sidebar.loading">
+				<table style="width:100%;">
+					<tbody>
+						<tr>
+							<td style="width: 50%;vertical-align:top;">
+								<select class="form-control" ng-model="pages.theme">
+									<option value="{{themeName}}" ng-repeat="(themeName, theme) in themes">{{theme.data.name}} ({{theme.data.version}})</option>
+								</select>
+								<div class="pages">
+									<div class="page" ng-repeat="page in sidebar.pages">
+										<div class="title" ng-click="pages.select(page)">
+											<span class="glyphicon glyphicon-file"></span> {{page.name}}
+											<div class="btn btn-primary btn-xs pull-right" ng-click="sidebar.edit(page)">
+												<span class="glyphicon glyphicon-edit"></span>
+											</div>
+										</div>
+										<div class="content" ng-class="{active:pages.selected==page.id}">
+											<ul class="components">
+												<li ng-click="sidebar.showWidgets(componentName, component)" ng-repeat="(componentName, component) in themes[pages.theme].components">{{componentName}}</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="btn btn-primary" ng-click="sidebar.create()" style="width:100%;">
+									<span class="glyphicon glyphicon-plus"></span> Create a new page
+								</div>
+							</td>
+							<td style="width: 50%;vertical-align:top;" ng-if="sidebar.open==2">
+								<img widget="widget" name="widgetName" class="widgetScreenshot" ng-src="{{widget.directory}}screenshot.jpg" ng-repeat="(widgetName, widget) in sidebar.selectedComponent.widgets" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="modal_page" tabindex="-1" role="dialog" aria-labelledby="modal_page_label" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="modal_page_label">Page Settings [{{sidebar.selectedPage.name}}]</h4>
+				</div>
+				<div class="modal-body">
+					<form role="form" ng-if="sidebar.selectedPage">
+						<div class="form-group">
+							<label for="modal_page_title">Page Title</label>
+							<input type="text" ng-model="sidebar.selectedPage.name" class="form-control" id="modal_page_title" placeholder="Page Title">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger pull-left" ng-click="sidebar.deleteCurrentPage()">Delete that page</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" ng-click="sidebar.updateCurrentPage()">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+
+	window.meanEngine.get('app').controller('mainCtrl', function ($scope) {
+		$scope.user 	= userData;
+		$scope.themes	= {json:themes};
+		
+		$scope.pages = {
+			selected:		false,
+			selectedObject:	{},
+			theme:		"bootstrap",
+			select:		function(page) {
+				$scope.pages.selected 			= page.id;
+				$scope.pages.selectedObject 	= page;
+				$scope.sidebar.open				= 1;
+			}
+		};
+		
+		$scope.widgets = {
+			loading:		false,
+			create:			function(pageid, path, directory) {
+				$scope.widgets.loading = true;
+				window.meanEngine.service("api").apicall({
+					method:	'widget.create',
+					params:	{
+						apikey:		$scope.user.apikey,
+						page:		pageid,
+						path:		path,
+						directory:	directory
+					},
+					callback:	function(response) {
+						console.log("response",response);
+						$scope.safeApply(function() {
+							$scope.pages.selectedObject.widgets.push(response.widget);
+							console.log("scope.$parent.pages.selectedObject",$scope.pages.selectedObject);
+						});
+					}
+				});
+			}
+		};
+
+		$scope.sidebar	= {
+			loading:		true,
+			open:			1,
+			selectedPage:	{name:'something',id:0},
+			selectedComponent:	{},
+			pages:			[],
+			refresh:		function() {
+				$scope.sidebar.loading = true;
+				window.meanEngine.service("api").apicall({
+					method:	'site.get',
+					params:	{
+						apikey:	$scope.user.apikey
+					},
+					callback:	function(response) {
+						console.log("response",response);
+						$scope.safeApply(function() {
+							$scope.sidebar.pages 	= response;
+							$scope.sidebar.loading 	= false;
+						});
+					}
+				});
+			},
+			create:			function() {
+				$scope.sidebar.loading = true;
+				window.meanEngine.service("api").apicall({
+					method:	'site.create',
+					params:	{
+						apikey:	$scope.user.apikey
+					},
+					callback:	function(response) {
+						$scope.sidebar.refresh();
+					}
+				});
+			},
+			deleteCurrentPage:			function() {
+				$scope.sidebar.loading = true;
+				$('#modal_page').modal('hide');
+				window.meanEngine.service("api").apicall({
+					method:	'site.remove',
+					params:	{
+						apikey:	$scope.user.apikey,
+						id:		$scope.sidebar.selectedPage.id
+					},
+					callback:	function(response) {
+						$scope.sidebar.refresh();
+					}
+				});
+			},
+			updateCurrentPage:	function() {
+				$scope.sidebar.loading = true;
+				$('#modal_page').modal('hide');
+				window.meanEngine.service("api").apicall({
+					method:	'site.update',
+					params:	{
+						apikey:	$scope.user.apikey,
+						id:		$scope.sidebar.selectedPage.id,
+						data:	{
+							name:	$scope.sidebar.selectedPage.name
+						}
+					},
+					callback:	function(response) {
+						$scope.sidebar.refresh();
+					}
+				});
+			},
+			edit:			function(page) {
+				$scope.safeApply(function() {
+					$scope.sidebar.selectedPage = page;
+					$('#modal_page').modal('show');
+				});
+			},
+			showWidgets:	function(componentName, component) {
+				console.log("component",component);
+				$scope.sidebar.open = 2;
+				$scope.sidebar.selectedComponent = {
+					name:		componentName,
+					widgets:	component
+				};
+			}
+		};
+
+		$scope.sidebar.refresh();
+	});
+	
+	
+	
+	
+	window.meanEngine.get('app').directive('widget', function() {
+		var link = function(scope, element, attrs) {
+			console.log("WIDGET COMPONENT!",scope);
+			
+			var dragInstance = new drag({
+				element:	element,
+				target:		$('.preview-container'),
+				parent:		element.parent(),
+				onStart:	function() {
+					console.log("Starting the drag...");
+				},
+				onDrag:		function() {
+					console.log("Dragging...");
+				},
+				onEnd:		function() {
+					console.log("...And we're done.");
+				},
+				onDrop:		function(target) {
+					console.log("Dropped!",target, scope.$parent.pages);
+					scope.$parent.widgets.create(scope.$parent.pages.selected, scope.widget.path, scope.widget.directory);
+				}
+			});
+		}
+	
+		return {
+			link: 			link,
+			transclude:		false,
+			scope:			{
+				widget:	'=',
+				name:	'='
+			}
+		};
+	});
+	
+	
+	window.meanEngine.get('app').directive('widgetPreview', function($compile) {
+		var link = function(scope, element, attrs) {
+			console.log("WIDGET PREVIEW!",scope);
+			
+			//element.html('<div '+scope.widgetPreview.directive+'="" data="widgetPreview.data">{{widgetPreview.directive}}</div>');
+			
+			
+			//$compile(element.contents())(scope);
+		}
+	
+		return {
+			link: 			link,
+			transclude:		false,
+			template:		'<img ng-src="{{widgetPreview.directory}}screenshot-large.jpg" />',
+			scope:			{
+				widgetPreview:	'=',
+			}
+		};
+	});
+</script>
+
+
+{include:sidebar/footer.html}

@@ -1,0 +1,23 @@
+{
+	"name": 		"Gamify-Passport",
+	"description": 	"Passport implementationf or Gamify Server.",
+	"version":		"1.0.0",
+	"dependencies": {
+		"mongodb":				"latest",
+		"underscore":			"latest",
+		"express":				"latest",
+		"request":				"latest",
+		"gamify":				"latest",
+		"passport":				"latest",
+		"toolset":				"latest",
+		"mime":					"latest",
+		"tiny-facebook-wrapper":"latest",
+		"passport-google":		"latest",
+		"passport-twitter":		"latest",
+		"passport-facebook":	"latest",
+		"passport-linkedin":	"latest",
+		"passport-youtube":		"latest",
+		"twig": 				"*"
+	}
+}
+

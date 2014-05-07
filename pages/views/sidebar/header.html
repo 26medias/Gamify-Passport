@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{text:title}</title>
+		<base href="/">
+		
+		<script type="text/javascript">
+			var userData = {json:user};
+			window.userData = userData;
+		</script>
+		
+		{dependency:dependencies}
+		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js"></script>
+		
+		<!-- Project file -->
+		<script type="text/javascript" src="static/engine/project.js"></script>
+		<script type="text/javascript" src="static/engine/drag.js"></script>
+		<link rel="stylesheet" href="static/engine/theme.css">
+		
+		<!-- Components/Widgets -->
+		{jsinclude:componentFiles}
+	</head>
+	<body ng-app="main">
+		
+				

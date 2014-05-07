@@ -1,0 +1,10 @@
+{
+	"name": 		"Prototype",
+	"version": 		"1.0.0",
+	"dependencies": {
+		"jquery": 			"latest",
+		"angular-strap": 	"latest",
+		"bootstrap": 		"latest",
+		"less": 			"latest"
+	}
+}
